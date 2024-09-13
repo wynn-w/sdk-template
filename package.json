@@ -1,14 +1,15 @@
 {
   "name": "sdk-template",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "",
   "scripts": {
     "clean": "rm -rf dist",
     "postbuild": "node ./scripts/index.js",
     "build:dev": "rollup -c --environment NODE_ENV:development  --bundleConfigAsCjs",
     "build:prod": "pnpm clean & rollup -c --environment NODE_ENV:production --bundleConfigAsCjs",
+    "start": "npm run build:dev -- --watch",
     "build": "npm run build:prod",
-    "publish:dev": "npm run build & node ./scripts/publish.js",
+    "publish:dev": "npm run build & node ./scripts/publish.js"
   },
   "keywords": [],
   "author": "wynn-w",
