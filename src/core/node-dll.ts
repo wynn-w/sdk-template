@@ -1,5 +1,5 @@
 import koffi from "koffi";
-import { getSourcePath, AfterParse } from "../utils";
+import { getSourcePath, AfterParse, AfterSend } from "../utils";
 import type { ResultType, strObj, ZkmLibOptions, TestKeySwitch, TestKeyType, VersionAndMode, BatteryType, MacAddressType, ConnType } from "../types";
 
 export class Encryptix {
@@ -19,27 +19,33 @@ export class Encryptix {
         this.ops = { ...this.ops, ...ops };
     }
     // send cmd
+    @AfterSend
     async enableKeyMode() {
         const handle = this.lib.func("CmdResult get_key_on()");
         return await this.asyncFnc<ResultType>(handle)
 
     }
+    @AfterSend
     async disibleKeyMode() {
         const handle = this.lib.func("CmdResult get_key_off()");
         return await this.asyncFnc<ResultType>(handle)
     }
+    @AfterSend
     async getConnectStatus() {
         const handle = this.lib.func("CmdResult get_conn()");
         return this.asyncFnc<ResultType>(handle)
     }
+    @AfterSend
     async getVersionAndMode() {
         const handle = this.lib.func("CmdResult get_mode()");
         return this.asyncFnc<ResultType>(handle)
     }
+    @AfterSend
     async getBattery () {
         const handle = this.lib.func("CmdResult get_elec()");
         return this.asyncFnc<ResultType>(handle)
     }
+    @AfterSend
     async getMacAddress() {
         const handle = this.lib.func("CmdResult get_mac_address()");
         return this.asyncFnc<ResultType>(handle)
