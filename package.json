@@ -9,7 +9,8 @@
     "build:prod": "pnpm clean & rollup -c --environment NODE_ENV:production --bundleConfigAsCjs",
     "start": "npm run build:dev -- --watch",
     "build": "npm run build:prod",
-    "publish:dev": "npm run build & node ./scripts/publish.js"
+    "publish:dev": "npm run build & cross-env LOCAL_ENV=true node ./scripts/publish.js",
+    "publish:prod": "npm run build & node ./scripts/publish.js"
   },
   "keywords": [],
   "author": "wynn-w",
@@ -22,6 +23,7 @@
     "@rollup/plugin-commonjs": "^26.0.1",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@types/node": "^22.5.4",
+    "cross-env": "^7.0.3",
     "ejs": "^3.1.10",
     "rollup": "^4.21.2",
     "rollup-plugin-copy": "^3.5.0",
