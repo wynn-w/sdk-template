@@ -28,38 +28,38 @@ export class Encryptix {
     }
     // send cmd
     @AfterSend
-    async enableKeyMode() {
+    async genEnableKeyMode() {
         const handle = this.lib.func("CmdResult get_key_on()");
         return await this.cacheSendCmd(handle)
     }
     @AfterSend
-    async disibleKeyMode() {
+    async genDisableKeyMode() {
         const handle = this.lib.func("CmdResult get_key_off()");
         return await this.cacheSendCmd(handle)
     }
     @AfterSend
-    async getConnectStatus() {
+    async genConnectStatus() {
         const handle = this.lib.func("CmdResult get_conn()");
         return await this.cacheSendCmd(handle)
     }
     @AfterSend
-    async getVersionAndMode() {
+    async genVersionAndMode() {
         const handle = this.lib.func("CmdResult get_mode()");
         return await this.cacheSendCmd(handle)
     }
     @AfterSend
-    async getBattery () {
+    async genBattery() {
         const handle = this.lib.func("CmdResult get_elec()");
         return await this.cacheSendCmd(handle)
     }
     @AfterSend
-    async getMacAddress() {
+    async genMacAddress() {
         const handle = this.lib.func("CmdResult get_mac_address()");
         return await this.cacheSendCmd(handle)
     }
     // recevie cmd
     @AfterParse
-    async parseKeyModeStatus(data: Uint8Array) {
+    async parseKeyModeStatus(data: ArrayBufferLike) {
         this.regStructure("TestKeySwitch", {
             type: "uint8_t",
             keyOn: "uint8_t"
@@ -73,7 +73,7 @@ export class Encryptix {
         return await this.asyncFnc<TestKeyType>(handle, data);
     }
     @AfterParse
-    async parseConnectStatus(data: ArrayBufferLike) {
+    async parseConnectAndRssi(data: ArrayBufferLike) {
         this.regStructure("Conn", {
             type: "uint8_t",
             btStatus: "uint8_t",
