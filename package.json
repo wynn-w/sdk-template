@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "clean": "rm -rf dist",
+    "clean": "rimraf dist",
     "postbuild": "node ./scripts/index.js",
     "build:dev": "rollup -c --environment NODE_ENV:development  --bundleConfigAsCjs",
     "build:prod": "pnpm clean & rollup -c --environment NODE_ENV:production --bundleConfigAsCjs",
@@ -29,6 +29,7 @@
     "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
     "jest": "^29.7.0",
+    "rimraf": "^6.0.1",
     "rollup": "^4.21.2",
     "rollup-plugin-copy": "^3.5.0",
     "rollup-plugin-dts": "^6.1.1",
